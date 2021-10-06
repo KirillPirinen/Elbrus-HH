@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarScroll">
+      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/">В начало</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Резюме
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+            <li><a class="dropdown-item" href="/group/location/1">Тест локация</a></li>
+            {{#each location}}
+            <li><a class="dropdown-item" href="/group/location/{{this.id}}">{{this.name}}</a></li>
+            {{/each}}
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="/admin/group/new" class="nav-link">Добавить новую группу</a>
+        </li>
+      </ul>
+      <form action="/admin/search/" class="d-flex">
+        <input name="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Поиск по ФИО</button>
+      </form>
+    </div>
+  </div>
+</nav>
