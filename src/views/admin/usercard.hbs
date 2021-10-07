@@ -2,46 +2,42 @@
 <div>
 {{>admin.navbar}}
 </div>
-<div class="grid" style="--bs-columns: 10; --bs-gap: 1rem;">
-  {{#if user}}
-  <div class="g-col-6">
-    <div class="container">
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+      <ul>
+        <li>ФИО</li>
+        <li>Группа</li>
+        <li>Дата выпуска</li>
+        <li>Телеграм</li>
+        <li>HH</li>
+        <li>Github</li>
+        <li>Скачать резюме</li>
+      </ul>
+    </div>
+    <div class="col-sm-9">
       <div class="row">
-        <div class="col-6 col-sm-4">ФИО</div>
-        <div class="col-6 col-sm-4">{{user.firstname}} {{user.lastname}} {{user.patronymic}}</div>
-        <!-- Заставит следующие колонки переходить на новую строку в контрольной точке md и выше -->
-        <div class="w-100 d-none d-md-block"></div>
-
-        <div class="col-6 col-sm-4">Группа</div>
-        <div class="col-6 col-sm-4">{{user.Group.name}}</div>
-
-        <div class="w-100 d-none d-md-block"></div>
-
-        <div class="col-6 col-sm-4">Дата выпуска</div>
-        <div class="col-6 col-sm-4">{{user.graduationdate}}</div>
-        
-        <div class="w-100 d-none d-md-block"></div>
-
-        <div class="col-6 col-sm-4">Телеграм</div>
-        <div class="col-6 col-sm-4">{{user.telegram}}</div>
-        
-        <div class="w-100 d-none d-md-block"></div>
-
-        <div class="col-6 col-sm-4">HH</div>
-        <div class="col-6 col-sm-4"><a href="{{user.hhcv}}">{{user.hhcv}}</a></div>
-
-        <div class="w-100 d-none d-md-block"></div>
-
-        <div class="col-6 col-sm-4">Github</div>
-        <div class="col-6 col-sm-4"><a href="{{user.github}}">{{user.github}}</a></div>
-        
-        <div class="col-6 col-sm-4"><a download href="{{user.pdfcv}}">Скачать резюме в PDF</a></div>
+        <div class="col-8 col-sm-6">
+          <ul>
+        <li>{{user.firstname}} {{user.lastname}} {{user.patronymic}}</li>
+        <li>{{user.Group.name}}</li>
+        <li>{{user.graduationdate}}</li>
+        <li><a href="https://telegram.me/username/{{user.telegram}}">{{user.telegram}}</a></li>
+        <li><a href="{{user.hhcv}}">{{user.hhcv}}</a></li>
+        <li><a href="{{user.github}}">{{user.github}}</a></li>
+        {{#if user.pdfcv}}
+        <li><a download href="/uploads/{{user.pdfcv}}">Скачать резюме в PDF</a></li>
+        {{else}}
+        <li>резюме отсутствует в базе</li>
+        {{/if}}
+      </ul>
+        </div>
+        <div class="col-4 col-sm-6">
+           <img width="200px" src="/uploads/{{user.userphoto}}" class="img-fluid rounded-start" alt="...">
+        </div>
       </div>
       <a href="/admin/user/edit/{{user.id}}" class="btn btn-warning">Редактировать профиль</a>
     </div>
   </div>
-  <div class="g-col-4">
-    <!--<img src="{{user.userphoto}}" class="img-fluid rounded-start" alt="...">-->
-  </div>
-  {{/if}}
 </div>

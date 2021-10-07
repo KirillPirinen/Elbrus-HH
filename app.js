@@ -3,6 +3,7 @@ const createError = require('http-errors');
 const path = require('path');
 const hbs = require('hbs');
 const session = require('express-session')
+const Validator = require('./src/routes/middleware/validator');
 //redis
 const redis = require('redis')
 const RedisStore = require('connect-redis')(session)
@@ -48,9 +49,10 @@ app.use('/user', userRouter);
 //   const error = createError(404, 'Запрашиваемой страницы не существует на сервере.');
 //   next(error);
 // });
-app.use('/admin', menuParser, adminRouter);
+app.post('/login', Validator.checkPass);
+app.use('/admin', Validator.isAuth, adminRouter);
 
 
 app.listen(PORT, () => {
-  console.log(`server started PORT: ${PORT}`);
+  console.log(`server started PORT: ${PORT} ${new Date()}`);
 })

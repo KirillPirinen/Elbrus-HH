@@ -7,12 +7,7 @@ const xslxUploader = require('./xlsx.router');
 //Get запросы
 router
 .get('/', async (req, res) => {
-  //if(req.session.isAuth) {
-    const locations = await Location.findAll();
-    res.render('admin/index', {locations})
-   //} else {
-  //   res.render('admin/adminlogin');
-  // }
+  res.render('admin/index');
 })
 .get('/group/new', (req, res) => {
   res.render('admin/addgroup', /*{location}*/)
