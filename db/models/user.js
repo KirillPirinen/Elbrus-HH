@@ -9,21 +9,22 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
+    static associate({Group}) {
       // define association here
+      this.belongsTo(Group, {foreignKey: 'groupid'});
     }
   };
   User.init({
-    firstName: DataTypes.STRING,
+    firstname: DataTypes.STRING,
     patronymic: DataTypes.STRING,
-    lastName: DataTypes.STRING,
-    group: DataTypes.STRING,
-    graduationDate: DataTypes.DATEONLY,
-    telegramUsername: DataTypes.TEXT,
-    gitHub: DataTypes.TEXT,
-    hhCV: DataTypes.TEXT,
-    pdfCV: DataTypes.TEXT,
-    userPhoto: DataTypes.TEXT
+    lastname: DataTypes.STRING,
+    groupid: DataTypes.INTEGER,
+    graduationdate: DataTypes.DATEONLY,
+    telegram: DataTypes.TEXT,
+    github: DataTypes.TEXT,
+    hhcv: DataTypes.TEXT,
+    pdfcv: DataTypes.TEXT,
+    userphoto: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'User',

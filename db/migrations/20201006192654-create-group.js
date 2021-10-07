@@ -11,8 +11,12 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
-      locationId: {
-        type: Sequelize.INTEGER
+      locationid: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Locations',
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,

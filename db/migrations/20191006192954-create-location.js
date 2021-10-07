@@ -11,9 +11,6 @@ module.exports = {
       city: {
         type: Sequelize.STRING
       },
-      groupId: {
-        type: Sequelize.INTEGER
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

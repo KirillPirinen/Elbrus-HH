@@ -8,34 +8,38 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      firstName: {
+      firstname: {
         type: Sequelize.STRING
       },
       patronymic: {
         type: Sequelize.STRING
       },
-      lastName: {
+      lastname: {
         type: Sequelize.STRING
       },
-      group: {
-        type: Sequelize.STRING
+      groupid: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Groups',
+          key: 'id'
+        }
       },
-      graduationDate: {
+      graduationdate: {
         type: Sequelize.DATEONLY
       },
-      telegramUsername: {
+      telegram: {
         type: Sequelize.TEXT
       },
-      gitHub: {
+      github: {
         type: Sequelize.TEXT
       },
-      hhCV: {
+      hhcvc: {
         type: Sequelize.TEXT
       },
-      pdfCV: {
+      pdfcv: {
         type: Sequelize.TEXT
       },
-      userPhoto: {
+      userphoto: {
         type: Sequelize.TEXT
       },
       createdAt: {

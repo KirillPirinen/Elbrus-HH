@@ -11,12 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate({ Location }) {
       // define association here
-      this.hasMany(Location, { through: 'Locations', foreignKey: 'locationId' })
+      this.belongsTo(Location, { foreignKey: 'locationid' })
     }
   };
   Group.init({
     name: DataTypes.STRING,
-    locationId: DataTypes.INTEGER
+    locationid: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Group',
