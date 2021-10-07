@@ -1,0 +1,13 @@
+{{>header}}
+<div>
+{{>admin.navbar}}
+</div>
+<div class="container">
+  <form action="/admin/location/new" method="POST">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Добавление данных в БД из таблицы</label>
+    <input type="file" name="file" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+  </div>
+  <button type="submit" class="btn btn-primary">Добавить студентов</button>
+</form>
+</div>

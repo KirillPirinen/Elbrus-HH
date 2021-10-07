@@ -1,7 +1,9 @@
 const router = require('express').Router();
 const Validator = require('./middleware/validator');
-const {Location, User, Group} = require('../../db/models');
+const {Location, User, Group, Sequelize} = require('../../db/models');
 const searcher = require('../functions/searcher');
+const Op = Sequelize.Op;
+const xslxUploader = require('./xlsx.router');
 //Get запросы
 router
 .get('/', async (req, res) => {
@@ -28,9 +30,20 @@ router
   res.render('admin/usercard', {user})
 })
 .get('/user/edit/:id', async (req, res) => {
-  const user = await User.findOne({where:{id:Number(id)}})
-  res.render('admin/edit', {user});
+  const user = await User.findOne({where:{id:Number(req.params.id)}, include:{
+    model:Group
+  }})
+  const groupid = user.Group.id;
+  const locationid = user.Group.locationid;
+  const groups = await Group.findAll({
+    where:{id:{[Op.ne]:groupid}},
+    include:{
+      model:Location,
+      where:{id:locationid}
+    }})
+  res.render('admin/useredit', {user, groups});
 })
+
 .get('/location/:id', async (req, res) => {
   const {id} = req.params;
   const groups = await Group.findAll({
@@ -72,6 +85,11 @@ router
 .post('/group/new', async (req, res) => {
   await Group.create({name:req.body.location, locationid:req.body.location});
   res.redirect('/');
-});
+})
+.post('/user/edit/', async (req, res) => {
+console.log(req.body);
+})
+
+router.use('/xlsx', xslxUploader);
 
 module.exports = router;
