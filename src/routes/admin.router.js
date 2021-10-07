@@ -23,6 +23,24 @@ router.get('/', (req, res) => {
   const user = await User.findOne({where:{id}})
   res.render('/admin/edit', {user});
 })
+.get('/location/:id', async (req, res) => {
+  const groups = await Group.findAll({
+      include:{
+        model:Location,
+        where:{id}
+      }
+  })
+  res.render('/admin/groups', {groups});
+})
+.get('/admin/groups/:id', async (req, res) => {
+  const users = await User.findAll({
+    include:{
+      model:Group,
+      where:{id}
+    }
+})
+res.render('/admin/groups/users', {users});
+})
 
 router
 .post('/', Validator.checkPass, (req, res) => {
