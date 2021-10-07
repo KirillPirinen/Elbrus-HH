@@ -1,8 +1,9 @@
 const router = require('express').Router();
-const { User } = require('../../db/models')
+const { User, Group } = require('../../db/models')
 
-router.get('/', (req, res)=>{
-  res.render('user')
+router.get('/', async (req, res)=>{
+  const groups = await Group.findAll();
+  res.render('user', {groups});
 })
 
 router.post('/', async (req, res)=>{
