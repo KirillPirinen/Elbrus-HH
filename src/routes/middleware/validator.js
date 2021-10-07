@@ -10,15 +10,11 @@ class Validator {
     }
   }
   static checkPass = async (req, res, next) => {
-    const saltRounds = 1;
-    const pass = 123;
-    const password = await bcrypt.hash(pass, saltRounds);
-    await Admin.create({login:'admin', password})
     try{
-      let admin = await Admin.findOne({where:{email:req.body.email}});
+      let admin = await Admin.findOne({where:{login:req.body.login}});
       if(await bcrypt.compare(req.body.password, admin?.password)) {
         req.session.admin = admin;
-        next();
+        res.redirect('/admin');
       } else {
         res.render('error', {message:'Данные неверные'});
       }

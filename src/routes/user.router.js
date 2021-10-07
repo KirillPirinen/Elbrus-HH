@@ -11,7 +11,6 @@ router.post('/', upload.fields([{ name: 'pdfcv', maxCount: 1 }, { name: 'userpho
   const {firstname, patronymic, lastname, groupid, graduationdate, telegram, github, hhcv} = req.body
   let {userphoto, pdfcv} = req.files;
   pdfcv = pdfcv || [{filename:null}];
-  console.log(req.files);
   try{
   await User.create({firstname, patronymic, lastname, groupid, graduationdate, telegram, github, hhcv, pdfcv:pdfcv[0].filename, userphoto:userphoto[0].filename})
   //Добавление успешно
