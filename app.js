@@ -18,8 +18,10 @@ const sessionsConf = {
   httpOnly: true, // невозможно изменить куку с фронта
   cookie: { expires: 24 * 60 * 60e3 },
 }
+
+const userRouter = require('./src/routes/user.router');
 //hbs settings
-hbs.registerPartials(path.resolve(process.env.PWD, 'views', 'partials'));
+hbs.registerPartials(path.resolve(process.env.PWD, 'src', 'views', 'partials'));
 
 const app = express();
 const PORT = 3000;
@@ -29,20 +31,22 @@ app.use(session(sessionsConf));
 // Сообщаем express, что в качестве шаблонизатора используется "hbs".
 app.set('view engine', 'hbs');
 // Сообщаем express, что шаблона шаблонизаторая (вью) находятся в папке "ПапкаПроекта/views".
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'src', 'views'));
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+
 // app.use('/', indexRouter);
 // app.use('/entries', entriesRouter);
-// app.use('/users', usersRouter);
+app.use('/user', userRouter);
 
-app.use((req, res, next) => {
-  const error = createError(404, 'Запрашиваемой страницы не существует на сервере.');
-  next(error);
-});
+// app.use((req, res, next) => {
+//   const error = createError(404, 'Запрашиваемой страницы не существует на сервере.');
+//   next(error);
+// });
+
 
 app.listen(PORT, () => {
   console.log(`server started PORT: ${PORT}`);
