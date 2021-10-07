@@ -64,7 +64,7 @@ router
     }
 })
 res.render('admin/users', {users, Group:groupname});
-})
+});
 //Post запросы
 router
 .post('/', Validator.checkPass, (req, res) => {
