@@ -8,6 +8,7 @@ const redis = require('redis')
 const RedisStore = require('connect-redis')(session)
 const redisClient = redis.createClient()
 const adminRouter = require('./src/routes/admin.router');
+const menuParser = require('./src/routes/middleware/dropmenu');
 //session config
 const sessionsConf = {
   store: new RedisStore({host:'localhost', port:6379, client: redisClient }),
@@ -26,6 +27,7 @@ hbs.registerPartials(path.resolve(process.env.PWD, 'src', 'views', 'partials'));
 const app = express();
 const PORT = 3000;
 //session middleware
+
 app.use(session(sessionsConf));
 
 // Сообщаем express, что в качестве шаблонизатора используется "hbs".
@@ -38,7 +40,6 @@ app.use(express.static(path.join(process.env.PWD, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-
 // app.use('/', indexRouter);
 // app.use('/entries', entriesRouter);
 app.use('/user', userRouter);
@@ -47,7 +48,7 @@ app.use('/user', userRouter);
 //   const error = createError(404, 'Запрашиваемой страницы не существует на сервере.');
 //   next(error);
 // });
-app.use('/admin', adminRouter);
+app.use('/admin', menuParser, adminRouter);
 
 
 app.listen(PORT, () => {

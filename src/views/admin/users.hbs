@@ -1,4 +1,7 @@
-<h1>Группа {{users[0].Group.name}}</h1>
+<div>
+{{>admin.navbar}}
+</div>
+<h1>Группа {{Group.name}}</h1>
 <table class="table">
   <thead>
     <tr>
@@ -15,12 +18,12 @@
     {{#each users}}
     <tr>
       <th>{{this.id}}</th>
-      <td><a href="/admin/user{{this.id}}">{{this.fname}} {{this.fname}} {{this.fname}}</a></td>
-      <td>{{this.graduateAt}}</td>
+      <td><a href="/admin/user/{{this.id}}">{{this.firstname}} {{this.lastname}} {{this.patronymic}}</a></td>
+      <td>{{this.graduationdate}}</td>
       <td>{{user.telegram}}</td>
-      <td><a href="{{this.hh}}">{{this.hh}}</a></td>
+      <td><a href="{{this.hhcv}}">{{this.hhcv}}</a></td>
       <td><a href="{{user.github}}">{{user.github}}</a></td>
-      <td><a download href="{{user.file}}">Скачать резюме</a></td>
+      <td><a download href="{{user.pdfcv}}">Скачать резюме</a></td>
     </tr>
     {{/each}}
   </tbody>

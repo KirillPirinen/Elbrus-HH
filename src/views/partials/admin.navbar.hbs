@@ -10,9 +10,8 @@
             Резюме
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-            <li><a class="dropdown-item" href="/group/location/1">Тест локация</a></li>
-            {{#each location}}
-            <li><a class="dropdown-item" href="/group/location/{{this.id}}">{{this.name}}</a></li>
+            {{#each dropmenu}}
+            <li><a class="dropdown-item" href="/admin/location/{{this.id}}">{{this.city}}</a></li>
             {{/each}}
           </ul>
         </li>
@@ -20,7 +19,7 @@
           <a href="/admin/group/new" class="nav-link">Добавить новую группу</a>
         </li>
       </ul>
-      <form action="/admin/search/" class="d-flex">
+      <form action="/admin/search" method="POST" class="d-flex">
         <input name="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Поиск по ФИО</button>
       </form>
