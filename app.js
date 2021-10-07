@@ -45,7 +45,7 @@ app.use(express.json());
 
 app.use('/user', userRouter);
 app.post('/login', Validator.checkPass);
-app.use('/admin', Validator.isAuth, adminRouter);
+app.use('/admin', Validator.isAuth, menuParser, adminRouter);
 app.use((req, res, next) => {
   const error = createError(404, 'Запрашиваемой страницы не существует на сервере.');
   next(error);

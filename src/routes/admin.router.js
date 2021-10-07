@@ -10,7 +10,7 @@ router
   res.render('admin/index');
 })
 .get('/group/new', (req, res) => {
-  res.render('admin/addgroup', /*{location}*/)
+  res.render('admin/addgroup')
 })
 .get('/location/new', (req,res) => {
   res.render('admin/addlocation')
@@ -59,7 +59,11 @@ router
     }
 })
 res.render('admin/users', {users, Group:groupname});
-});
+})
+.get('/exit', (req, res) => {
+  req.session.destroy();
+  res.clearCookie('sid').redirect('/admin');
+})
 //Post запросы
 router
 .post('/', Validator.checkPass, (req, res) => {
@@ -74,12 +78,15 @@ router
   else res.render('admin/error', {message:'Резюме не найдено в базе'});
 })
 .post('/location/new', async (req, res) => {
-  await Location.create({name:req.body.location});
-  res.redirect('/group/new');
+  const{city} = req.body;
+  await Location.create({city});
+  res.redirect('/admin/group/new');
 })
 .post('/group/new', async (req, res) => {
-  await Group.create({name:req.body.location, locationid:req.body.location});
-  res.redirect('/');
+  const{name, locationid, year} = req.body;
+  const data = await Group.create({name:`${name}-${year}`, locationid:Number(locationid)});
+  console.log(data)
+  res.redirect('/admin');
 })
 .post('/user/edit/', async (req, res) => {
 console.log(req.body);
