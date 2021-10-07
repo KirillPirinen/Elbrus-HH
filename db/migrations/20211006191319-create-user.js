@@ -33,7 +33,7 @@ module.exports = {
       github: {
         type: Sequelize.TEXT
       },
-      hhcvc: {
+      hhcv: {
         type: Sequelize.TEXT
       },
       pdfcv: {
