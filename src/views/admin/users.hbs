@@ -1,0 +1,27 @@
+<h1>Группа {{users[0].Group.name}}</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">ФИО</th>
+      <th scope="col">Дата выпуска</th>
+      <th scope="col">telegram</th>
+      <th scope="col">HH</th>
+      <th scope="col">gihub</th>
+      <th scope="col">скачать резюме</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each users}}
+    <tr>
+      <th>{{this.id}}</th>
+      <td><a href="/admin/user{{this.id}}">{{this.fname}} {{this.fname}} {{this.fname}}</a></td>
+      <td>{{this.graduateAt}}</td>
+      <td>{{user.telegram}}</td>
+      <td><a href="{{this.hh}}">{{this.hh}}</a></td>
+      <td><a href="{{user.github}}">{{user.github}}</a></td>
+      <td><a download href="{{user.file}}">Скачать резюме</a></td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
