@@ -7,7 +7,7 @@
     </div>
   </header>
 <div class = "md-8 ">
-<form method="POST" action="http://localhost:3000/user">
+<form name="cvupload" method="POST" action="/user" enctype="multipart/form-data">
   <p>Пожалуйста, заполни форму!</p>
         <div class="form-group">
       <div class="input-group">
@@ -28,15 +28,17 @@
       </div>
       </div>
       <div class="form-group">
-      <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
-        <input type="text" class="form-control" name="groupid" placeholder="Группа" required="required">
-      </div>
+        <select name="groupid" class="form-select" aria-label="Default select example">
+         <option selected="selected">Выбери группу</option>
+        {{#each groups}}
+        <option value="{{this.id}}">{{this.name}}</option>
+        {{/each}}
+      </select>
       </div>
        <div class="form-group">
       <div class="input-group">
         <span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
-        <input type="data" class="form-control" name="graduationdate" placeholder="Год выпуска" required="required">
+        <input type="date" class="form-control" name="graduationdate" placeholder="Год выпуска" required="required">
       </div>
         </div>
       <div class="form-group">
@@ -48,7 +50,7 @@
     <div class="form-group">
       <div class="input-group">
         <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-        <input type="email" class="form-control" name="hhcv" placeholder="Ссылка на резюме на hh.ru" required="required">
+        <input type="text" class="form-control" name="hhcv" placeholder="Ссылка на резюме на hh.ru" required="required">
       </div>
         </div>
     <div class="form-group">
@@ -57,7 +59,7 @@
           <i class="fa fa-lock"></i>
           <i class="fa fa-check"></i>
         </span> --}}
-        <input type="email" class="form-control" name="github" placeholder="Ссылка на github" required="required">
+        <input type="text" class="form-control" name="github" placeholder="Ссылка на github" required="required">
       </div>
       </div>
       <div class="mb-3">

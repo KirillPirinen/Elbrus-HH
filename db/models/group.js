@@ -15,7 +15,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Group.init({
-    name: DataTypes.STRING,
+    name: {
+      type:DataTypes.STRING,
+      unique:true,
+      allowNull:false
+    },
     locationid: DataTypes.INTEGER
   }, {
     sequelize,
