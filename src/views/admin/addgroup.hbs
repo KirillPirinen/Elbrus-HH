@@ -1,0 +1,24 @@
+{{>header}}
+<div>
+{{>admin.navbar}}
+</div>
+<div class="container">
+  <form action="/admin/group/new" method="POST">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Название группы</label>
+    <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <label for="exampleInputEmail1" class="form-label">Год</label>
+    <input type="text" pattern="20[0-9]{2}" name="year" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+  </div>
+  <select name="locationid" class="form-select">
+    <option> Выберите локацию группы </option>
+    {{#each dropmenu}}
+    <option value={{this.id}}>{{this.name}}</option>
+    {{/each}}
+  </select>
+  <a href="/admin/location/new">Добавить новую локацию</a>
+  <br>
+  <button type="submit" class="btn btn-primary">Добавить</button>
+</form>
+</div>
+

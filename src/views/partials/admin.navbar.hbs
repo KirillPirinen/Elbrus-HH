@@ -1,0 +1,34 @@
+<header class="header">
+  <div class="header-container">
+    <img src="https://elbrusboot.camp/static/newLogo-00ed4b8011624cd94aa1812d35f25088.svg" alt="Logo">
+    <ul class="nav-list">
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/">В начало</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          Резюме
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+          {{#each dropmenu}}
+          <li><a class="dropdown-item" href="/admin/location/{{this.id}}">{{this.city}}</a></li>
+          {{/each}}
+        </ul>
+      </li>
+      <li class="nav-item nav-link">
+        <a href="/admin/group/new" class="nav-link">Добавить группу</a>
+      </li>
+      <li class="nav-item nav-link">
+        <a href="/admin/group/new" class="nav-link">Импортировать студентов из таблицы</a>
+      </li>
+      <li class="nav-item nav-link">
+        <a href="/admin/exit" class="nav-link">Выйти</a>
+      </li>
+    </ul>
+    <form action="/admin/search" method="POST" class="d-flex">
+      <input name="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Поиск по ФИО</button>
+    </form>
+  </div>
+</header>
