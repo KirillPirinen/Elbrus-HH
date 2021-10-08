@@ -3,9 +3,10 @@ const createError = require('http-errors');
 const path = require('path');
 const hbs = require('hbs');
 const session = require('express-session')
+const Validator = require('./src/routes/middleware/validator');
 //redis
 const redis = require('redis')
-const RedisStore = require('connect-redis')(session)
+const RedisStore = require('connect-redis')(session);
 const redisClient = redis.createClient()
 const adminRouter = require('./src/routes/admin.router');
 const menuParser = require('./src/routes/middleware/dropmenu');
@@ -41,18 +42,16 @@ app.use(express.static(path.join(process.env.PWD, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// app.use('/', indexRouter);
-// app.use('/entries', entriesRouter);
+
+
 app.use('/user', userRouter);
-app.use('/', mainRouter);
-
-// app.use((req, res, next) => {
-//   const error = createError(404, 'Запрашиваемой страницы не существует на сервере.');
-//   next(error);
-// });
-app.use('/admin', menuParser, adminRouter);
-
+app.post('/login', Validator.checkPass);
+app.use('/admin', Validator.isAuth, menuParser, adminRouter);
+app.use((req, res, next) => {
+  const error = createError(404, 'Запрашиваемой страницы не существует на сервере.');
+  next(error);
+});
 
 app.listen(PORT, () => {
-  console.log(`server started PORT: ${PORT}`);
+  console.log(`server started PORT: ${PORT} ${new Date()}`);
 })
