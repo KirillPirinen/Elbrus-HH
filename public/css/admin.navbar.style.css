@@ -1,0 +1,132 @@
+
+
+:after, :before, body {
+    font-family: RF Rostin,Arial,sans-serif;
+}
+.header{
+  background-color: #4520ab;
+  height: 80px;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 100000;
+  margin: 0 1%;
+}
+.header-container{
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 100%;
+}
+.nav-list{
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  margin-top: 10px;
+
+}
+.nav-link {
+  color: #3a8eed;
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: none;
+  /* transition: -webkit-transform .1s linear;
+  transition: transform .1s linear;
+  transition: transform .1s linear,-webkit-transform .1s linear; */
+  white-space: nowrap;
+  
+}
+.nav-link:hover {
+  color: #66eefb;
+}
+.nav-item{
+  padding: 10px 0px;
+}
+.dropdown-item{
+  color: #4520ab;
+}
+.dropdown-item:hover{
+  color: #4520ab;
+}
+.form-control{
+  width: 200px;
+  height: 40px;
+  margin: 10px 0px;
+  color: #4520ab;
+}
+.btn{
+  align-items: center;
+  background-color: #ffbc5b;
+  border: 2px solid #ffbc5b;
+  border-radius: 5px;
+  color: #4520ab;
+  cursor: pointer;
+  display: flex;
+  font-size: 14px;
+  font-weight: 700;
+  height: 40px;
+  justify-content: center;
+  letter-spacing: .5px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: -webkit-transform .1s linear;
+  transition: transform .1s linear;
+  transition: transform .1s linear,-webkit-transform .1s linear;
+  width: 140px;
+}
+.btn:hover{
+  background-color: #ffbc5b;
+  border: 2px solid #ffbc5b;
+  color: #4520ab;
+}
+/* not navbar from this point: we can move it to another file later if needed */
+/* usercard style: */
+.btn-delete-user{align-items: center;
+  border-radius: 5px;
+  color: #4520ab;
+  cursor: pointer;
+  display: flex;
+  font-size: 14px;
+  font-weight: 700;
+  height: 40px;
+  justify-content: center;
+  letter-spacing: .5px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: -webkit-transform .1s linear;
+  transition: transform .1s linear;
+  transition: transform .1s linear,-webkit-transform .1s linear;
+  width: 140px;
+  background-color: red;
+  border: 2px solid red;
+  color: white;
+}
+/* content */
+.container{
+  margin-top: 15px;
+}
+/* addgroup */
+.form-select-location{
+  width: 200px;
+  height: 40px;
+  margin: 10px 0px;
+  color: #4520ab;
+  align-items: center;
+  background-color: white;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  color: #4520ab;
+  cursor: pointer;
+  display: flex;
+  font-size: 14px;
+  font-weight: 700;
+  height: 40px;
+  justify-content: center;
+  letter-spacing: .5px;
+  text-decoration: none;
+  transition: -webkit-transform .1s linear;
+  transition: transform .1s linear;
+  transition: transform .1s linear,-webkit-transform .1s linear;
+}
