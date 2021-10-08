@@ -38,6 +38,16 @@ router
     }})
   res.render('admin/useredit', {user, groups});
 })
+.get('/user/delete/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    let idUser =await User.findOne({where:{id}})
+    await User.destroy({ where: { id } })
+    res.redirect(`/admin/groups/${idUser.groupid}`).send({mes:'Пользователь удален'})
+  } catch (error) {
+    res.sendStatus(500)
+  }
+})
 
 .get('/location/:id', async (req, res) => {
   const {id} = req.params;
@@ -60,6 +70,7 @@ router
 })
 res.render('admin/users', {users, Group:groupname});
 })
+
 .get('/exit', (req, res) => {
   req.session.destroy();
   res.clearCookie('sid').redirect('/admin');
@@ -80,7 +91,7 @@ router
 .post('/location/new', async (req, res) => {
   const{city} = req.body;
   await Location.create({city});
-  res.redirect('/admin/group/new');
+  res.redirect('/admin/group/new')
 })
 .post('/group/new', async (req, res) => {
   const{name, locationid, year} = req.body;
