@@ -13,7 +13,7 @@
   <select name="locationid" class="form-select">
     <option> Выберите локацию группы </option>
     {{#each dropmenu}}
-    <option value={{this.id}}>{{this.name}}</option>
+    <option value={{this.id}}>{{this.city}}</option>
     {{/each}}
   </select>
   <a href="/admin/location/new">Добавить новую локацию</a>

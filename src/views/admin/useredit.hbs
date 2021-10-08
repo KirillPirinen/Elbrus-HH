@@ -5,11 +5,12 @@
 <div>
   {{#if user}}
 <div class="container">
-<form action="/admin/user/edit" method="POST">
+<form action="/admin/user/edit" method="POST" enctype="multipart/form-data">
   <p>Форма редактирования</p>
     <hr>
       <div class="form-group">
       <div class="input-group">
+        <input type="hidden" name="id" value="{{user.id}}">
         <span class="input-group-addon"><i class="fa fa-user"></i></span>
         <input type="text" class="form-control" name="firstname" placeholder="Имя" required="required" value="{{user.firstname}}">
       </div>
@@ -23,7 +24,7 @@
       </div>
       <p>Группа</p>
        <select name="groupid" class="form-select" aria-label="Default select example">
-         <option value="{{this.Group.id}}" selected="selected">{{user.Group.name}}</option>
+         <option value="{{user.Group.id}}" selected="selected">{{user.Group.name}}</option>
         {{#each groups}}
         <option value="{{this.id}}">{{this.name}}</option>
         {{/each}}
