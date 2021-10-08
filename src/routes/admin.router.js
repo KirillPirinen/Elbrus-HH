@@ -18,24 +18,32 @@ router
 })
 .get('/user/:id', async (req, res) => {
   const {id} = req.params;
-  const user = await User.findOne({where:{id:Number(id)}, include:{
-    model:Group,
-  }})
-  res.render('admin/usercard', {user})
+  try{
+    const user = await User.findOne({where:{id:Number(id)}, include:{
+      model:Group,
+    }})
+    res.render('admin/usercard', {user})
+  }catch{
+    return res.render('admin/error', {message:'Такого резюме не существует'});
+  }
 })
 .get('/user/edit/:id', async (req, res) => {
-  const user = await User.findOne({where:{id:Number(req.params.id)}, include:{
-    model:Group
-  }})
-  const groupid = user.Group.id;
-  const locationid = user.Group.locationid;
-  const groups = await Group.findAll({
-    where:{id:{[Op.ne]:groupid}},
-    include:{
-      model:Location,
-      where:{id:locationid}
+  try {
+    const user = await User.findOne({where:{id:Number(req.params.id)}, include:{
+      model:Group
     }})
-  res.render('admin/useredit', {user, groups});
+    const groupid = user.Group.id;
+    const locationid = user.Group.locationid;
+    const groups = await Group.findAll({
+      where:{id:{[Op.ne]:groupid}},
+      include:{
+        model:Location,
+        where:{id:locationid}
+      }})
+    res.render('admin/useredit', {user, groups});
+  }catch {
+    return res.render('admin/error', {message:'Такого резюме не существует'});
+  }
 })
 .get('/user/delete/:id', async (req, res) => {
   try {
@@ -50,7 +58,8 @@ router
 })
 
 .get('/location/:id', async (req, res) => {
-  const {id} = req.params;
+  try{
+    const {id} = req.params;
   const groups = await Group.findAll({
       include:{
         model:Location,
@@ -58,9 +67,13 @@ router
       }
   })
   res.render('admin/groups', {groups});
+  } catch {
+    return res.render('admin/error', {message:'Локация не найдена'});
+  }
 })
 .get('/groups/:id', async (req, res) => {
-  const {id} = req.params;
+  try {
+    const {id} = req.params;
   const groupname = await Group.findOne({where:{id:Number(id)}});
   const users = await User.findAll({
     include:{
@@ -68,7 +81,10 @@ router
       where:{id:Number(id)}
     }
 })
-res.render('admin/users', {users, Group:groupname});
+  res.render('admin/users', {users, Group:groupname});
+  } catch {
+    return res.render('admin/error', {message:'Нет такой группы'});
+  }
 })
 
 .get('/exit', (req, res) => {
@@ -82,24 +98,37 @@ router
   res.render('');
 })
 .post('/search', async (req, res) => {
-  const [firstname, lastname] = req.body.search.split(' ');
+  try{
+    const [firstname, lastname] = req.body.search.split(' ');
   const allusers = await User.findAll();
   const users = searcher(allusers, [firstname, lastname]);
   if(users.length) return res.render('admin/users', {users});
   else res.render('admin/error', {message:'Резюме не найдено в базе'});
+  }catch{
+    return res.render('admin/error', {message:'Поиск сломался'});
+  }
 })
 .post('/location/new', async (req, res) => {
-  const{city} = req.body;
+  try{
+    const{city} = req.body;
   await Location.create({city});
   res.redirect('/admin/group/new')
+  }catch{
+    return res.render('admin/error', {message:'Ошибка добавления локации'});
+  }
 })
 .post('/group/new', async (req, res) => {
+  try{
   const{name, locationid, year} = req.body;
   const data = await Group.create({name:`${name}-${year}`, locationid:Number(locationid)});
   res.redirect('/admin');
+  }catch{
+    return res.render('admin/error', {message:'Ошибка добавления группы'});
+  }
 })
 .post('/user/edit/', upload.fields([{ name: 'pdfcv', maxCount: 1 }, { name: 'userphoto', maxCount: 1 }]), async (req, res) => {
-  const {firstname, patronymic, lastname, groupid, graduationdate, telegram, github, hhcv, id} = req.body;
+  try{
+    const {firstname, patronymic, lastname, groupid, graduationdate, telegram, github, hhcv, id} = req.body;
   const currentValues = await User.findOne({where:{id:Number(id)}});
   let {userphoto, pdfcv} = req.files;
   pdfcv = pdfcv || [{filename:currentValues.pdfcv}];
@@ -110,6 +139,9 @@ router
   res.redirect(`/admin/user/${id}`);
   }catch (err){
     return res.render('admin/error', {message:'Ошибка изменения'});
+  }
+  }catch{
+    return res.render('admin/error', {message:'Ошибка! Резюме не найдено'});
   }
 })
 

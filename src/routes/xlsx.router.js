@@ -16,7 +16,12 @@ router.post('/', upload.single('excel'), async (req, res) => {
   const rawData = XLSX.utils.sheet_to_json(sheet.Sheets[sheet.SheetNames[0]], {raw:true, header:1, blankrows:false});
   const prepearedData = formilizer(rawData, req.body.groupid);
   console.log(prepearedData);
-  await User.bulkCreate(prepearedData);
+  try {
+    await User.bulkCreate(prepearedData);
+    res.redirect(`/admin/groups/${req.body.groupid}`);
+  } catch {
+    return res.render('admin/error', {message:'Ошибка добавления'});
+  }
 })
 
 module.exports = router;
