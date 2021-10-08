@@ -20,7 +20,11 @@
       </div>
       <div class="input-group">
         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-        <input type="text" class="form-control" name="patronymic" placeholder="Отчество" required="required" value="{{user.patronymic}}">
+        <input type="text" class="form-control" name="patronymic" placeholder="Отчество" value="{{user.patronymic}}">
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
+        <input type="date" class="form-control" name="graduationdate" placeholder="Дата выпуска" value="{{user.graduationdate}}" required="required">
       </div>
       <p>Группа</p>
        <select name="groupid" class="form-select" aria-label="Default select example">
