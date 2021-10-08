@@ -3,10 +3,22 @@
 {{>admin.navbar}}
 </div>
 <div class="container">
-  <form action="/admin/location/new" method="POST">
+  <div class="mb-3">
+    <h2>Формат колонок:</h2>
+    <p>1 - ФИО(через пробел), 2 - telegram, 3 - hhlink, 4 - githublink</p>
+  </div>
+  <form action="/admin/xlsx" method="POST" enctype="multipart/form-data">
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Добавление данных в БД из таблицы</label>
-    <input type="file" name="file" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <input type="file" name="excel" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+  </div>
+  <div class="mb-3">
+    <select name="groupid" class="form-select" aria-label="Default select example">
+         <option selected="selected">Выбери группу</option>
+        {{#each groups}}
+        <option value="{{this.id}}">{{this.name}}</option>
+        {{/each}}
+    </select>
   </div>
   <button type="submit" class="btn btn-primary">Добавить студентов</button>
 </form>
