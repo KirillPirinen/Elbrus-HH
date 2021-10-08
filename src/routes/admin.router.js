@@ -100,7 +100,9 @@ router
 .post('/search', async (req, res) => {
   try{
     const [firstname, lastname] = req.body.search.split(' ');
-  const allusers = await User.findAll();
+  const allusers = await User.findAll({include:{
+    model:Group
+  }});
   const users = searcher(allusers, [firstname, lastname]);
   if(users.length) return res.render('admin/users', {users});
   else res.render('admin/error', {message:'Резюме не найдено в базе'});

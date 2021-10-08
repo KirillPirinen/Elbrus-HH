@@ -8,6 +8,7 @@
     <tr>
       <th scope="col">id</th>
       <th scope="col">ФИО</th>
+      <th scope="col">Группа</th>
       <th scope="col">Дата выпуска</th>
       <th scope="col">telegram</th>
       <th scope="col">HH</th>
@@ -19,6 +20,7 @@
     <tr>
       <th>{{this.id}}</th>
       <td><a href="/admin/user/{{this.id}}">{{this.firstname}} {{this.lastname}} {{this.patronymic}}</a></td>
+      <td>{{this.Group.name}}</td>
       <td>{{this.graduationdate}}</td>
       <td><a href="http://t.me/{{this.telegram}}">{{this.telegram}}</a></td>
       <td><a href="{{this.hhcv}}">{{this.hhcv}}</a></td>
