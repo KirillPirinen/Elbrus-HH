@@ -21,6 +21,7 @@ const sessionsConf = {
 }
 
 const userRouter = require('./src/routes/user.router');
+const mainRouter = require('./src/routes/main.router');
 //hbs settings
 hbs.registerPartials(path.resolve(process.env.PWD, 'src', 'views', 'partials'));
 
@@ -43,6 +44,7 @@ app.use(express.json());
 // app.use('/', indexRouter);
 // app.use('/entries', entriesRouter);
 app.use('/user', userRouter);
+app.use('/', mainRouter);
 
 // app.use((req, res, next) => {
 //   const error = createError(404, 'Запрашиваемой страницы не существует на сервере.');

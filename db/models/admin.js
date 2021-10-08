@@ -1,8 +1,8 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
+const { Model, DataTypes } = require('sequelize');
+const { Model, DataTypes, Deferrable } = require("sequelize");
+const sequelize = new Sequelize('sqlite::memory');
+module.exports = (sequelize) => {
   class Admin extends Model {
     /**
      * Helper method for defining associations.
