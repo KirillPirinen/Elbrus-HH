@@ -11,14 +11,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate({ Group }) {
       // define association here
-      //this.hasMany(Group, { foreignKey: 'locationid' })
+      this.hasMany(Group, { foreignKey: 'locationid' })
     }
   };
-  // Location.init({
-  //   city: DataTypes.STRING
-  // }, {
-  //   sequelize,
-  //   modelName: 'Location',
-  // });
+  Location.init({
+    city: DataTypes.STRING
+  }, {
+    sequelize,
+    modelName: 'Location',
+  });
   return Location;
 };

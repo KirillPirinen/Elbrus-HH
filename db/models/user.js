@@ -11,23 +11,23 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate({Group}) {
       // define association here
-     // this.belongsTo(Group, {foreignKey: 'groupid'});
+     this.belongsTo(Group, {foreignKey: 'groupid'});
     }
   };
-  // User.init({
-  //   firstname: DataTypes.STRING,
-  //   patronymic: DataTypes.STRING,
-  //   lastname: DataTypes.STRING,
-  //   groupid: DataTypes.INTEGER,
-  //   graduationdate: DataTypes.DATEONLY,
-  //   telegram: DataTypes.TEXT,
-  //   github: DataTypes.TEXT,
-  //   hhcv: DataTypes.TEXT,
-  //   pdfcv: DataTypes.TEXT,
-  //   userphoto: DataTypes.TEXT
-  // }, {
-  //   sequelize,
-  //   modelName: 'User',
-  // });
+  User.init({
+    firstname: DataTypes.STRING,
+    patronymic: DataTypes.STRING,
+    lastname: DataTypes.STRING,
+    groupid: DataTypes.INTEGER,
+    graduationdate: DataTypes.DATEONLY,
+    telegram: DataTypes.TEXT,
+    github: DataTypes.TEXT,
+    hhcv: DataTypes.TEXT,
+    pdfcv: DataTypes.TEXT,
+    userphoto: DataTypes.TEXT
+  }, {
+    sequelize,
+    modelName: 'User',
+  });
   return User;
 };

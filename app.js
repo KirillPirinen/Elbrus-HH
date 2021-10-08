@@ -44,6 +44,7 @@ app.use(express.json());
 
 
 
+app.use('/', mainRouter);
 app.use('/user', userRouter);
 app.post('/login', Validator.checkPass);
 app.use('/admin', Validator.isAuth, menuParser, adminRouter);
