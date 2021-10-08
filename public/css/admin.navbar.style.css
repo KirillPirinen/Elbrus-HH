@@ -44,7 +44,10 @@
 .nav-item{
   padding: 10px 0px;
 }
-.dropdown-menu{
+.dropdown-item{
+  color: #4520ab;
+}
+.dropdown-item:hover{
   color: #4520ab;
 }
 .form-control{
