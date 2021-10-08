@@ -1,3 +1,15 @@
 .form-select{
   width: 50%;
+  margin: 10px 0px;
+  color: #4520ab;
 }
+.location-option{
+  color: #4520ab;
+}
+.add-location{
+  color: #4520ab;
+}
+.btn{
+  margin: 10px 0px;
+}
+
