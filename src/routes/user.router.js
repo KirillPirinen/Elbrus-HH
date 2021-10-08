@@ -13,9 +13,11 @@ router.post('/', upload.fields([{ name: 'pdfcv', maxCount: 1 }, { name: 'userpho
   pdfcv = pdfcv || [{filename:null}];
   try{
   await User.create({firstname, patronymic, lastname, groupid, graduationdate, telegram, github, hhcv, pdfcv:pdfcv[0].filename, userphoto:userphoto[0].filename})
-  //Добавление успешно
+  res.redirect('/success')
+  // res.json({msg: 'Success'})
   }catch (err){
-    return res.render('/admin/error', {message:'Ошибка добавления'})
+    // return res.render('/admin/error', {message:'Ошибка добавления'})
+    res.json({msg: 'Error'})
   }
 })
 
