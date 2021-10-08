@@ -11,7 +11,8 @@
   right: 0;
   top: 0;
   z-index: 100000;
-  margin: 0 1%;
+  margin: 0;
+  padding: 0 1%;
 }
 .header-container{
   align-items: center;
@@ -138,3 +139,4 @@
   margin: 10px 10px; 
   padding: 10px 10px;
 }
+
