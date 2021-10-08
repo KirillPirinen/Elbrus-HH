@@ -13,7 +13,7 @@ module.exports = {
     telegram: 'telegtam',
     github: 'githun',
     hhcv: 'url',
-    pdfcv: 'url',
+    pdfcv: null,
     userphoto: 'url',
     createdAt: new Date(),
     updatedAt: new Date()
@@ -27,7 +27,7 @@ module.exports = {
       telegram: 'telegtam',
       github: 'githun',
       hhcv: 'url',
-      pdfcv: 'url',
+      pdfcv: null,
       userphoto: 'url',
       createdAt: new Date(),
       updatedAt: new Date()
@@ -41,7 +41,7 @@ module.exports = {
         telegram: 'telegtam',
         github: 'githun',
         hhcv: 'url',
-        pdfcv: 'url',
+        pdfcv: null,
         userphoto: 'url',
         createdAt: new Date(),
         updatedAt: new Date()

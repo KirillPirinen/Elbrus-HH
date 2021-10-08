@@ -12,7 +12,6 @@
       <th scope="col">telegram</th>
       <th scope="col">HH</th>
       <th scope="col">gihub</th>
-      <th scope="col">скачать резюме</th>
     </tr>
   </thead>
   <tbody>
@@ -21,10 +20,9 @@
       <th>{{this.id}}</th>
       <td><a href="/admin/user/{{this.id}}">{{this.firstname}} {{this.lastname}} {{this.patronymic}}</a></td>
       <td>{{this.graduationdate}}</td>
-      <td>{{user.telegram}}</td>
+      <td><a href="http://t.me/{{this.telegram}}">{{this.telegram}}</a></td>
       <td><a href="{{this.hhcv}}">{{this.hhcv}}</a></td>
-      <td><a href="{{user.github}}">{{user.github}}</a></td>
-      <td><a download href="{{user.pdfcv}}">Скачать резюме</a></td>
+      <td><a href="{{this.github}}">{{this.github}}</a></td>
     </tr>
     {{/each}}
   </tbody>
