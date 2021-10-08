@@ -1,0 +1,43 @@
+.container-width{
+  width: 100%;
+  margin: 0 auto;
+}
+.text-width{
+  width: 75%;
+  margin: 5% auto;
+}
+.header-logo{
+  margin-left: 20px;
+}
+.head{
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.adminbtn{
+  align-items: center;
+  background-color: #ffbc5b;
+  border: 2px solid #ffbc5b;
+  border-radius: 5px;
+  color: #4520ab;
+  cursor: pointer;
+  display: flex;
+  font-size: 14px;
+  font-weight: 700;
+  height: 40px;
+  justify-content: center;
+  letter-spacing: .5px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: -webkit-transform .1s linear;
+  transition: transform .1s linear;
+  transition: transform .1s linear,-webkit-transform .1s linear;
+  width: 140px;
+  margin: 20px;
+}
+  .text{
+    text-align: center;
+    margin-top: 50px;
+  }
+  
