@@ -40,9 +40,10 @@ router
 .get('/user/delete/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    let idUser =await User.findOne({where:{id}})
-    await User.destroy({ where: { id } })
-    res.redirect(`/admin/groups/${idUser.groupid}`).send({mes:'Пользователь удален'})
+    let user = await User.findOne({include:{model:Group}}, {where:{id}})
+    const groupId = user.Group.id;
+    await user.destroy()
+    res.redirect(`/admin/groups/${groupId}`);
   } catch (error) {
     res.sendStatus(500)
   }
