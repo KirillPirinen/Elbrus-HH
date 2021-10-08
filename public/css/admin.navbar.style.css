@@ -108,7 +108,8 @@
   margin-top: 15px;
 }
 /* addgroup */
-.form-select-location{
+.form-select-location, 
+.form-select-import{
   width: 200px;
   height: 40px;
   margin: 10px 0px;
@@ -129,4 +130,11 @@
   transition: -webkit-transform .1s linear;
   transition: transform .1s linear;
   transition: transform .1s linear,-webkit-transform .1s linear;
+}
+.selector-location-container{
+  display: flex;
+}
+.add-location{
+  margin: 10px 10px; 
+  padding: 10px 10px;
 }

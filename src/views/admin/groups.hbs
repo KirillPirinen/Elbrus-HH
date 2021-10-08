@@ -7,7 +7,11 @@
   {{/if}}
 <div class="container">
 {{#each groups}}
-  <a href="/admin/groups/{{this.id}}" class="link-info">{{this.name}}</a>
+  <ul>
+    <li>
+      <a href="/admin/groups/{{this.id}}" class="link-info">{{this.name}}</a>
+    </li>
+  </ul>
 {{/each}}
 </div>
 
