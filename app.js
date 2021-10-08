@@ -22,6 +22,7 @@ const sessionsConf = {
 }
 
 const userRouter = require('./src/routes/user.router');
+const mainRouter = require('./src/routes/main.router');
 //hbs settings
 hbs.registerPartials(path.resolve(process.env.PWD, 'src', 'views', 'partials'));
 
@@ -43,6 +44,7 @@ app.use(express.json());
 
 
 
+app.use('/', mainRouter);
 app.use('/user', userRouter);
 app.post('/login', Validator.checkPass);
 app.use('/admin', Validator.isAuth, menuParser, adminRouter);

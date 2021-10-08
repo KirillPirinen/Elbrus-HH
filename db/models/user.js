@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate({Group}) {
       // define association here
-      this.belongsTo(Group, {foreignKey: 'groupid'});
+     this.belongsTo(Group, {foreignKey: 'groupid'});
     }
   };
   User.init({
